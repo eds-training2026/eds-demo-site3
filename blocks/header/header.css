@@ -475,3 +475,92 @@ header nav .nav-sections li li a {
     color: var(--nav-yellow);
   }
 }
+
+
+/* ---------- fixes ---------- */
+
+/* never let the header cause horizontal scroll */
+header .nav-wrapper,
+header nav { overflow-x: clip; }
+
+/* social boxes shrink on small screens */
+header nav .nav-topbar ul { width: 100%; max-width: 352px; }
+header nav .nav-topbar ul li {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 88px;
+  height: 72px;
+}
+
+/* contact boxes may wrap on mobile */
+header nav .nav-contact { max-width: 100%; }
+header nav .nav-contact-text {
+  padding-left: 16px;
+  font-size: 17px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+header nav .nav-contact-text strong { font-size: 19px; }
+header nav .nav-contact .icon { width: 40px; margin-right: 12px; }
+
+/* menu links when da.live leaves a <p> inside the <li> (fallback) */
+header nav .nav-sections ul > li > p { margin: 0; }
+header nav .nav-sections ul > li > p > a {
+  display: block;
+  padding: 14px 0;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media (width >= 1200px) {
+  header nav .nav-contact-text {
+    padding-left: 30px;
+    font-size: 20px;
+    white-space: nowrap;
+  }
+
+  header nav .nav-contact-text strong { font-size: 22px; }
+  header nav .nav-contact .icon { width: 50px; margin-right: 18px; }
+
+  header nav .nav-topbar ul li { height: 92px; }
+
+  /* bar must never exceed the viewport */
+  header nav .nav-bar { overflow: visible; }
+
+  header nav .nav-sections { min-width: 0; }
+
+  /* fluid menu sizing so everything fits from 1200px up */
+  header nav .nav-sections .default-content-wrapper > ul > li > a,
+  header nav .nav-sections .default-content-wrapper > ul > li > button,
+  header nav .nav-sections .default-content-wrapper > ul > li > p > a {
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 100%;
+    padding: 0 clamp(12px, 1.6vw, 37px);
+    font-size: clamp(15px, 1.4vw, 20px);
+    white-space: nowrap;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > p {
+    height: 100%;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li:hover > p > a {
+    background-color: var(--nav-dark);
+  }
+
+  /* address + search */
+  header nav .nav-tools { flex: 0 1 auto; min-width: 0; }
+
+  header nav .nav-tools p:first-child {
+    padding: 0 clamp(16px, 2.2vw, 40px);
+    font-size: clamp(14px, 1.3vw, 20px);
+  }
+
+  header nav .nav-tools p:not(:first-child) {
+    width: clamp(60px, 5vw, 90px);
+  }
+}
